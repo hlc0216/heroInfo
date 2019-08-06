@@ -15,7 +15,18 @@
 	2 创建ajax函数
 	3 调用ajax函数发送请求到UserServlet
 	4 调用业务层获取对应数据
-
+ -->
+ <!-- 获取响应内容（响应内容的格式） 
+ 	其实就是讲述数据按照json的格式拼接好的字符串，方便使用eval方法将接收的字符串数据
+ 	直接转换为js对象
+ 	
+ 	json格式：
+ 	var 对象名={
+ 		属性名：属性值
+ 		属性名：属性值
+ 		.......
+ 	
+ 	}
  -->
 <!-- 声明js代码 -->
 <script type="text/javascript">
@@ -33,8 +44,7 @@
 				if (ajax.status == 200) {
 					//获取响应数据
 					var result = ajax.responseText;
-					alert(result);
-					eval("var u =" + result);
+					eval("var u =" + result);//将java对象转化成js对象（媒介使用json格式）
 					//处理响应数据
 					var ta = document.getElementById("ta");
 					var tr = ta.insertRow(1);
@@ -55,7 +65,7 @@
 		ajax.open("post", "user");
 		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		ajax.send("name=" + name);
-	}
+	} 
 </script>
 <!-- css代码 -->
 <style type="text/css">
